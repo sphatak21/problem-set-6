@@ -144,13 +144,13 @@ function drawTriangle() {
 	a=Number(prompt("Enter side 1 length"));
 	b=Number(prompt("Enter side 2 length"));
 	c=Number(prompt("Enter hypotenuse length"));
-	if(((a**2) + (b**2) == (c**2)) && Number.isInteger(a) && Number.isInteger(b) && Number.isInteger(c) && canvas.width-x-a>=0 && canvas.height-y-b>=0){
+	if(((a**2) + (b**2) == (c**2)) && a>0 && b>0 && c>0 && canvas.width-x-a>=0 && canvas.height-y-b>=0){
 		break;
 	}else{
 		alert("That is not a valid triangle")
 	}
   }
- //Line A 
+ //Line A
  context.beginPath(); //Begins a path
  context.moveTo(x,y); //Choses the starting point
  context.lineTo(x,y+a); //Line A coordinates: It is a vertical line, therefore the same x value but different y-value
@@ -204,8 +204,8 @@ function drawSmileyFace() {
   let mouthRadius=radius*.7
   ctx.beginPath();
   ctx.arc(x/2, y/2, radius, 0, Math.PI*2); // Face
-  ctx.stroke();	
-  
+  ctx.stroke();
+
   ctx.beginPath(); //Right Eye
   ctx.arc(x/2 - radius/3, y/2-radius/4, eyeRadius,0, Math.PI*2);
   ctx.stroke();
@@ -213,7 +213,7 @@ function drawSmileyFace() {
   ctx.beginPath(); //Left Eye
   ctx.arc(x/2+radius/3, y/2-radius/4, eyeRadius,0, Math.PI*2);
   ctx.stroke();
-  
+
   ctx.beginPath(); //Mouth
   ctx.arc(x/2, y/2, mouthRadius,0, Math.PI);
   ctx.stroke();
@@ -240,22 +240,25 @@ function drawSmileyFace() {
  */
 
 function drawStar() {
-    let canvas = document.getElementById('canvas5');
+    let canvas = document.getElementById('canvas6');
     let ctx = canvas.getContext('2d');
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 	let outerRadius=Number(prompt("Please enter a radius for the outer circle"));
 	let pointA=[125, 125-outerRadius];
-	console.log(pointA[0]);
 	let pointB=[(outerRadius*(Math.cos(Math.PI/10)))+125, 125-(outerRadius*(Math.sin(Math.PI/10)))];
-	console.log(pointB);
-	let pointC=[125+(outerRadius*(Math.sin(Math.PI/10))), 125+(outerRadius*(Math.cos(Math.PI/10)))];
-	console.log(pointC);
-	let pointD=[];
-	let pointE=[];
+	let pointC=[125+(outerRadius*(Math.sin((Math.PI)/10))), 125+(outerRadius*(Math.cos((Math.PI)/10)))];
+	let pointD=[125-(outerRadius*(Math.sin((Math.PI/10)))), 125+outerRadius*(Math.cos((Math.PI/10/10)))];
+	let pointE=[125-(outerRadius*(Math.cos(Math.PI/10))),125-(outerRadius*(Math.sin((Math.PI)/10)))];
 	ctx.beginPath();
-	ctx.moveTo(125,25);
-	ctx.lineTo(100,17);
-	ctx.stroke();
+	ctx.moveTo(pointA[0],pointA[1]);
+	ctx.lineTo(pointB[0],pointB[1]);
+  ctx.moveTo(pointA[0],pointA[1]);
+  ctx.lineTo(pointE[0],pointE[1]);
+  ctx.moveTo(pointB[0],pointB[1]);
+  ctx.lineTo(pointC[0],pointC[1]);
+  ctx.moveTo(pointE[0],pointE[1]);
+  ctx.lineTo(pointD[0],pointD[1])
+  ctx.stroke();
 }
 
 /*
