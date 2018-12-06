@@ -13,7 +13,7 @@
 function sayHello() {
   let canvas = document.getElementById('canvas1');
   let ctx = canvas.getContext('2d');
-  ctx.clearRect(0, 0, 50, 10);
+  ctx.clearRect(0, 0, canvas.width, canvas.length);
   ctx.font="48px sans-serif";
   ctx.strokeText("Hello, World", 10, 50);
 
@@ -86,19 +86,19 @@ function drawRectangle() {
  */
 
 function drawColoredRectangle() {
-  const canvas = document.getElementById("canvas3");
-  const context = canvas.getContext("2d");
+  let canvas = document.getElementById("canvas3");
+  let context = canvas.getContext("2d");
   context.clearRect(0, 0, canvas.width, canvas.height);
 
   let color;
   while(true){
     color=prompt("Please Enter a Valid Color")
-    if(color="black" || color="blue" || color="green" || color="orange" || color="purple" || color="red" || color="yellow") {
+    if(color=="black" || color=="blue" || color=="green" || color=="orange" || color=="purple" || color=="red" || color=="yellow") {
       break;
     }
   }
   context.fillStyle=color;
-  context.fillRext(10,10,100,50);
+  context.fillRect(10,10,100,50);
 
 }
 
@@ -132,8 +132,41 @@ function drawColoredRectangle() {
  */
 
 function drawTriangle() {
-
+  let x=10;
+  let y=10;
+  let a;
+  let b;
+  let c;
+  let canvas = document.getElementById("canvas4");
+  let context = canvas.getContext("2d");
+  context.clearRect(0, 0, canvas.width, canvas.height);
+  while(true){
+	a=Number(prompt("Enter side 1 length"));
+	b=Number(prompt("Enter side 2 length"));
+	c=Number(prompt("Enter hypotenuse length"));
+	if(((a**2) + (b**2) == (c**2)) && Number.isInteger(a) && Number.isInteger(b) && Number.isInteger(c) && canvas.width-x-a>=0 && canvas.height-y-b>=0){
+		break;
+	}else{
+		alert("That is not a valid triangle")
+	}
+  }
+ //Line A 
+ context.beginPath(); //Begins a path
+ context.moveTo(x,y); //Choses the starting point
+ context.lineTo(x,y+a); //Line A coordinates: It is a vertical line, therefore the same x value but different y-value
+ context.stroke(); //Draws the line
+ //Line B
+ context.beginPath();
+ context.moveTo(x,y+a);
+ context.lineTo(x+b,y+a);
+ context.stroke();
+ //Hypotenuse
+ context.beginPath();
+ context.moveTo(x,y);
+ context.lineTo(x+b,y+a);
+ context.stroke();
 }
+
 
 /*
  * Smile. 7 points.
@@ -155,8 +188,38 @@ function drawTriangle() {
  */
 
 function drawSmileyFace() {
+  let radius;
+  let canvas = document.getElementById('canvas5');
+  let ctx = canvas.getContext('2d');
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+	while(true){
+		radius=Number(prompt("Please enter a good radius please"));
+		if(radius>=1 && radius<=canvas.width && Number.isInteger(radius)){
+			break;
+		}
+	}
+  let x=canvas.width;
+  let y=canvas.height;
+  let eyeRadius=radius*.1
+  let mouthRadius=radius*.7
+  ctx.beginPath();
+  ctx.arc(x/2, y/2, radius, 0, Math.PI*2); // Face
+  ctx.stroke();	
+  
+  ctx.beginPath(); //Right Eye
+  ctx.arc(x/2 - radius/3, y/2-radius/4, eyeRadius,0, Math.PI*2);
+  ctx.stroke();
 
-}
+  ctx.beginPath(); //Left Eye
+  ctx.arc(x/2+radius/3, y/2-radius/4, eyeRadius,0, Math.PI*2);
+  ctx.stroke();
+  
+  ctx.beginPath(); //Mouth
+  ctx.arc(x/2, y/2, mouthRadius,0, Math.PI);
+  ctx.stroke();
+  }
+
+
 
 /*
  * Star. 9 points.
@@ -177,7 +240,22 @@ function drawSmileyFace() {
  */
 
 function drawStar() {
-
+    let canvas = document.getElementById('canvas5');
+    let ctx = canvas.getContext('2d');
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+	let outerRadius=Number(prompt("Please enter a radius for the outer circle"));
+	let pointA=[125, 125-outerRadius];
+	console.log(pointA[0]);
+	let pointB=[(outerRadius*(Math.cos(Math.PI/10)))+125, 125-(outerRadius*(Math.sin(Math.PI/10)))];
+	console.log(pointB);
+	let pointC=[125+(outerRadius*(Math.sin(Math.PI/10))), 125+(outerRadius*(Math.cos(Math.PI/10)))];
+	console.log(pointC);
+	let pointD=[];
+	let pointE=[];
+	ctx.beginPath();
+	ctx.moveTo(125,25);
+	ctx.lineTo(100,17);
+	ctx.stroke();
 }
 
 /*
