@@ -243,23 +243,38 @@ function drawStar() {
     let canvas = document.getElementById('canvas6');
     let ctx = canvas.getContext('2d');
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-	let outerRadius=Number(prompt("Please enter a radius for the outer circle"));
-	let pointA=[125, 125-outerRadius];
-	let pointB=[(outerRadius*(Math.cos(Math.PI/10)))+125, 125-(outerRadius*(Math.sin(Math.PI/10)))];
-	let pointC=[125+(outerRadius*(Math.sin((Math.PI)/10))), 125+(outerRadius*(Math.cos((Math.PI)/10)))];
-	let pointD=[125-(outerRadius*(Math.sin((Math.PI/10)))), 125+outerRadius*(Math.cos((Math.PI/10/10)))];
-	let pointE=[125-(outerRadius*(Math.cos(Math.PI/10))),125-(outerRadius*(Math.sin((Math.PI)/10)))];
-	ctx.beginPath();
-	ctx.moveTo(pointA[0],pointA[1]);
-	ctx.lineTo(pointB[0],pointB[1]);
-  ctx.moveTo(pointA[0],pointA[1]);
-  ctx.lineTo(pointE[0],pointE[1]);
-  ctx.moveTo(pointB[0],pointB[1]);
-  ctx.lineTo(pointC[0],pointC[1]);
-  ctx.moveTo(pointE[0],pointE[1]);
-  ctx.lineTo(pointD[0],pointD[1])
-  ctx.stroke();
-}
+
+      let outerRadius=Number(prompt())
+      let innerRadius=Number(prompt())
+      if (outerRadius>=innerRadius && canvas.width>=outerRadius+125 && canvas.height>=outerRadius+125 && innerRadius>=1 && outerRadius>=1){
+        let points=5;
+        let outerx=[];
+        let outery=[];
+        let innerx=[];
+        let innery=[];
+        for(let i=0;i<points;i++){
+          outerx.push(Math.cos((Math.PI*2*i)/points-(Math.PI/2))*outerRadius+125);
+          outery.push(Math.sin((Math.PI*2*i)/points-(Math.PI/2))*outerRadius+125);
+          innerx.push(Math.cos(((Math.PI*2*i)/points)-(Math.PI/2)+(Math.PI/points))*innerRadius+125);
+          innery.push(Math.sin(((Math.PI*2*i)/points)-(Math.PI/2)+(Math.PI/points))*innerRadius+125);
+        }
+        ctx.beginPath();
+        ctx.moveTo(outerx[0], outery[0]);
+        for(let j=0;j<outerx.length;j++){
+          ctx.lineTo(innerx[j], innery[j]);
+          ctx.lineTo(outerx[j+1], outery[j+1]);
+        }
+        ctx.lineTo(outerx[0], outery[0]);
+        ctx.stroke();
+        ctx.closePath();
+    }
+    else{
+        alert('invalid inputs');
+      }
+  }
+
+
+
 
 /*
  * Stop Sign. 7 points.
@@ -277,8 +292,39 @@ function drawStar() {
  */
 
 function drawStopSign() {
+  let canvas = document.getElementById('canvas7');
+  let ctx = canvas.getContext('2d');
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  let sidelength=80;
+  let center=[10+(sidelength)/2+sidelength/Math.sqrt(2), 10+(sidelength/2)+(sidelength/Math.sqrt(2))]
+  console.log(center)
+  let points=8;
+  let pointx=[];
+  let pointy=[];
 
+  for(let i=0;i<points;i++){
+    pointx.push(Math.cos(((Math.PI*2*i)/points)-Math.PI/8)*100+center[0]);
+    pointy.push(Math.sin(((Math.PI*2*i)/points)-Math.PI/8)*100+center[1]);
+  }
+  ctx.beginPath();
+  ctx.moveTo([pointx][0], pointy[0]);
+  for(let j=0;j<pointx.length;j++){
+    ctx.lineTo(pointx[j], pointy[j]);
+  }
+  ctx.lineTo(pointx[0], pointy[0]);
+  ctx.stroke();
+
+  ctx.fillStyle="red";
+  ctx.fill();
+  ctx.closePath();
+  ctx.beginPath();
+  ctx.textAlign="center";
+  ctx.font="56px Georgia";
+  ctx.fillStyle="white";
+  ctx.fillText("STOP", center[0], center[1]+15);
+  ctx.closePath()
 }
+
 
 /*
  * Pyramid. 7 points.
@@ -299,7 +345,15 @@ function drawStopSign() {
  */
 
 function drawPyramid() {
-
+  let canvas = document.getElementById('canvas7');
+  let ctx = canvas.getContext('2d');
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  let numbercubes=5;
+  let sideLength=Number(prompt("enter a side length"))
+  for(let x=0;x<5;x++){
+    ctx.strokeRect(10,canvas.height-10, sideLength, sideLength);
+    
+  }
 }
 
 /*
