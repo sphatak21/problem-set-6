@@ -345,17 +345,26 @@ function drawStopSign() {
  */
 
 function drawPyramid() {
-  let canvas = document.getElementById('canvas7');
+  let canvas = document.getElementById('canvas8');
   let ctx = canvas.getContext('2d');
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  let numbercubes=5;
-  let sideLength=Number(prompt("enter a side length"))
-  for(let x=0;x<5;x++){
-    ctx.strokeRect(10,canvas.height-10, sideLength, sideLength);
-    
+  let sideLength=Number(prompt("enter a side length"));
+  let x=10;
+  let y=canvas.height-10;
+  let i=0;
+  lineNumber=1;
+  while(i<5){
+    for(let j=0+lineNumber;j<=5;j++){
+      ctx.strokeRect(x,y-sideLength,sideLength,sideLength);
+      x+=sideLength;
+    }
+    x=10+(sideLength/2)*lineNumber;
+    y-=sideLength;
+    lineNumber++;
+    i++;
   }
-}
 
+}
 /*
  * House. 7 points.
  *
@@ -386,5 +395,32 @@ function drawPyramid() {
  */
 
 function drawHouse() {
+  let canvas = document.getElementById('canvas9');
+  let ctx = canvas.getContext('2d');
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  while(true){
+  doorColor=prompt("Enter a color for the Door");
+  houseColor=prompt("Enter a color for the House");
+  if((doorColor=="brown" || doorColor=="blue" || doorColor=="green" || doorColor=="orange" || doorColor=="purple" || doorColor=="red" || doorColor=="yellow")
+  && (houseColor=="brown" || houseColor=="blue" || houseColor=="green" || houseColor=="orange" || houseColor=="purple" || houseColor=="red" || houseColor=="yellow")) {
+    break;
+  }
+  else{
+      alert("One or more of your colors is invalid")
+  }
+}
+let x=150;
+let lengthHouse=576;
+let heightHouse=400;
+let y=canvas.height-heightHouse-10;
+ctx.beginPath();
+ctx.fillStyle=houseColor;
+ctx.fillRect(x,y,lengthHouse,heightHouse);
+ctx.closePath();
+ctx.beginPath();
+ctx.fillStyle=doorColor;
+ctx.fillRect(x+(lengthHouse/2)-30,y+heightHouse,60,60);
+ctx.closePath();
 
 }
