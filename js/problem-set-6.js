@@ -244,8 +244,8 @@ function drawStar() {
     let ctx = canvas.getContext('2d');
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      let outerRadius=Number(prompt())
-      let innerRadius=Number(prompt())
+      let outerRadius=Number(prompt("Enter a valid outer radius"));
+      let innerRadius=Number(prompt("Enter a valid inner radius"));
       if (outerRadius>=innerRadius && canvas.width>=outerRadius+125 && canvas.height>=outerRadius+125 && innerRadius>=1 && outerRadius>=1){
         let points=5;
         let outerx=[];
@@ -417,10 +417,18 @@ let y=canvas.height-heightHouse-10;
 ctx.beginPath();
 ctx.fillStyle=houseColor;
 ctx.fillRect(x,y,lengthHouse,heightHouse);
-ctx.closePath();
-ctx.beginPath();
 ctx.fillStyle=doorColor;
-ctx.fillRect(x+(lengthHouse/2)-30,y+heightHouse,60,60);
+ctx.fillRect(x+(lengthHouse/2)-30,y+300,60,100);
+ctx.fillStyle="gray";
+ctx.moveTo(x,y);
+ctx.lineTo(x+286,150);
+ctx.lineTo(x+lengthHouse,y);
+ctx.lineTo(x,y);
+ctx.fill();
+ctx.fillStyle="#ADD8E6";	
+ctx.fillRect(300,y+100, 50, 50);
+ctx.fillRect(526,y+100, 50, 50);
+ctx.fillRect(300,y+200, 50, 50);
+ctx.fillRect(526,y+200, 50, 50);
 ctx.closePath();
-
 }
