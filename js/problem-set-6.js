@@ -415,20 +415,33 @@ let lengthHouse=576;
 let heightHouse=400;
 let y=canvas.height-heightHouse-10;
 ctx.beginPath();
+//house
 ctx.fillStyle=houseColor;
 ctx.fillRect(x,y,lengthHouse,heightHouse);
+//door
 ctx.fillStyle=doorColor;
 ctx.fillRect(x+(lengthHouse/2)-30,y+300,60,100);
+ctx.strokeRect(x+(lengthHouse/2)-30,y+300,60,100);
+ctx.stroke();
+
+//roof
 ctx.fillStyle="gray";
 ctx.moveTo(x,y);
 ctx.lineTo(x+286,150);
 ctx.lineTo(x+lengthHouse,y);
 ctx.lineTo(x,y);
 ctx.fill();
-ctx.fillStyle="#ADD8E6";	
+//windows
+ctx.fillStyle="#ADD8E6";
 ctx.fillRect(300,y+100, 50, 50);
 ctx.fillRect(526,y+100, 50, 50);
 ctx.fillRect(300,y+200, 50, 50);
 ctx.fillRect(526,y+200, 50, 50);
 ctx.closePath();
+//doorknob
+ctx.beginPath();
+ctx.fillStyle='black';
+ctx.arc(450, 700, 6, 0, Math.PI*2);
+ctx.fill();
+ctx.closePath()
 }
